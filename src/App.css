@@ -1,3 +1,40 @@
-#ex1Slider .slider-selection {
-	background: #BABABA;
+.formAddProduct__wrapper {
+	width: 100%;
+	max-width: 1450px;
+	margin: auto;
+	padding: 20px;
+}
+
+.formAddProduct label {
+	display: block;
+}
+
+.formAddProduct__title, .cart__title {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.formAddProduct__btnAdd {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.cart_table {
+	border: 1px solid silver;
+	margin-bottom: 20px;
+}
+
+.cart_table td {
+	min-width: 100px;
+	border: 1px solid silver;
+	text-align: center;
+	padding: 10px;
+}
+
+.cart__form label {
+	display: block
+}
+
+.cart__form-input {
+	margin-right: 10px;
+	margin-bottom: 20px;
 }

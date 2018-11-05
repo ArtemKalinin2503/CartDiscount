@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'; //connect нужен для связи компонента со store
-<<<<<<< HEAD
 import {postData, getData, fetchResult} from '../reducers/'; //Импортируем thunk компоненты (для сетевого запроса) и action
-=======
-import {postData, getData, fetchResult} from '../reducers/';
->>>>>>> f682f36b555e106a609f4aa1036daccfe2db1a85
 import { store } from '../store';
 
 //Компонент Корзина
@@ -23,19 +19,13 @@ class AddProduct extends Component {
             price: inputValuePriceProduct, //Значение input Цена
             priceDiscount: inputValuePriceProduct //Цена продукта (временное состояние)
         }
-<<<<<<< HEAD
-        this.props.fetchPost(data); //Вызов thunk getPost (все что предали в объект data запишеться на сервер)
-=======
-        this.props.fetchPost(data); //Вызов thunk getPost
->>>>>>> f682f36b555e106a609f4aa1036daccfe2db1a85
-
+        this.props.fetchPost(data); //Вызов thunk getPost (все что передали в объект data запишеться на сервер)
     };
 
     //Клик по кнопке Применить скидку
     handleAddDiscount(e) {
         e.preventDefault();
         let inputValuePriceDiscount = parseInt(this.refs.inputDiskount.value); //Преобразуем полученное значение в число 
-<<<<<<< HEAD
         //Возьмем данные с сервера и с помощью цикла map переберем значения price 
         var discountedData = this.props.apiData.map(oldValue => {
             let newValue  = {
@@ -46,19 +36,6 @@ class AddProduct extends Component {
         });
         this.props.updateDiscounted(discountedData); //Вызовим updateDiscounted (в который передали action fetchResult (в функции mapDispatchToProps)) 
     }
-=======
-
-        var discountedData = this.props.apiData.map(oldValue => {
-            let newValue  = {
-                ...oldValue,
-                priceDiscount: oldValue.price - (oldValue.price*((inputValuePriceDiscount/100).toFixed(2)))
-            }
-            return newValue;
-        });
-        this.props.updateDiscounted(discountedData);
-    }
-
->>>>>>> f682f36b555e106a609f4aa1036daccfe2db1a85
 
     render() {
         return (
@@ -66,15 +43,15 @@ class AddProduct extends Component {
                 <p className="formAddProduct__title">Добавить продукт</p>
                 <form className="formAddProduct">
                     <label>
-                        Продукт
-                        <input type="text" ref='inputProductName' className="formAddProduct__input" />    
+                        <p>Продукт</p>
+                        <input type="text" ref='inputProductName' className="formAddProduct__input"/>    
                     </label>
                     <label>
-                        Цена
+                        <p>Цена</p>
                         <input type="number" ref="inputProductPrice" className="formAddProduct__input"/>
                     </label>
                 </form>                                    {/*Прокинем контекст this с помощью bind (для ref)*/}     
-                <button className="formAddProduct__btnAdd" onClick={this.addProduct.bind(this)}>Добавить</button>
+                <button className="formAddProduct__btnAdd" ref="btnAdd"  onClick={this.addProduct.bind(this)}>Добавить</button>
                 <div className="cart__wrapper">
                     <p className="cart__title">Корзина</p>
                     <table className="cart_table">
@@ -98,9 +75,9 @@ class AddProduct extends Component {
                     </table>
                     <form className="cart__form">
                         <label>
-                            Применить скидку
+                            <p>Применить скидку</p>
                             <input type="number" ref='inputDiskount' className="cart__form-input"/>
-                            Рублей
+                            Руб
                         </label>                              {/*Прокинем контекст this с помощью bind (для ref)*/}      
                         <button className="cart__form-addBtn"  onClick={this.handleAddDiscount.bind(this)}>Применить</button>
                     </form>    
@@ -124,11 +101,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     fetchPost: postData,
     fetchGet: getData,
-<<<<<<< HEAD
     updateDiscounted: fetchResult //Для вызова action fetchResult - который обновит данные 
-=======
-    updateDiscounted: fetchResult
->>>>>>> f682f36b555e106a609f4aa1036daccfe2db1a85
 }
 
 //Обвернем данный компонент в connect для свзяи с хранилищем

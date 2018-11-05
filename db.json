@@ -1,44 +1,16 @@
 {
   "posts": [
     {
-      "product": "Яблоки",
-      "price": 40,
-      "priceDiscount": 40,
+      "product": "Хлеб",
+      "price": 20,
+      "priceDiscount": 20,
       "id": 1
     },
     {
-<<<<<<< HEAD
-      "product": "Апельсины",
-=======
-      "product": "apple",
->>>>>>> f682f36b555e106a609f4aa1036daccfe2db1a85
-      "price": 20,
-      "priceDiscount": 20,
+      "product": "Рыба",
+      "price": 100,
+      "priceDiscount": 100,
       "id": 2
-    },
-    {
-<<<<<<< HEAD
-      "product": "Мандарины",
-      "price": 80,
-      "priceDiscount": 80,
-=======
-      "product": "juice",
-      "price": 23,
-      "priceDiscount": 23,
->>>>>>> f682f36b555e106a609f4aa1036daccfe2db1a85
-      "id": 3
-    },
-    {
-      "product": "juice",
-      "price": 23,
-      "priceDiscount": 23,
-      "id": 4
-    },
-    {
-      "product": "sss",
-      "price": 222,
-      "priceDiscount": 222,
-      "id": 5
     }
   ]
 }

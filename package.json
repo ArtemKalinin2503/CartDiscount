@@ -4,9 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
-    "jquery": "^3.3.1",
     "json-server": "^0.14.0",
-    "moment": "^2.22.2",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-axios": "^2.0.1",
@@ -27,8 +25,6 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "bootstrap": "^4.1.3",
-    "bootstrap-slider": "^10.2.1",
     "redux-devtools-extension": "^2.13.5"
   }
 }
