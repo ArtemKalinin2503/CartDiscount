@@ -5,7 +5,6 @@ export const actionIdState = (id) => {return {type: "Action_Id", payload: id}};
 export const actionProduct = (productAdd) => {return {type: "Action_Product_Form", payload: productAdd}};
 export const actionPrice = (productPrice) => {return {type: "Action_Price_Product", payload: productPrice}};
 export const actionPriceDiscount = (priceDiscount) => {return {type: "Action_Price_Discount", payload: priceDiscount}};
-export const actiontDiscount = (discount) => {return {type: "Action_Discount", payload: discount}};
 //Actions для post запроса
 export const actionStartPost = (isRequestSent)=>{return {type: "Request_Sending", payload: isRequestSent}};
 export const actionEndPost = (postResult)=>{return {type:"Request_Result", payload: postResult}};
@@ -20,7 +19,6 @@ export const initState = {
   product: '',
   price: 0,
   priceDiscount: 0,
-  discount: [0],
   //Состояние для сетевого запроса
   requestSending:false,
   requestSuccess: null,
@@ -48,11 +46,6 @@ const mainReducer = (state = initState, action) => {
                 ...state,
                 priceDiscount: action.payload
         }; 
-        case "Action_Discount":
-            return {
-                ...state,
-                discount: action.payload
-        };
         //Для сетевого запроса    
         case "Action_Id":
             return {
@@ -95,8 +88,9 @@ export const postData = (post) => {
         dispatch(actionStartPost(true));
         axios.post("http://localhost:3000/posts", post)
         .then(result => {
-            if (result.status === 200) {
+            if (result.status === 201) {
                 dispatch(actionEndPost(true));
+                dispatch(getData());
             } else {
                 dispatch(actionEndPost(false));
             }
@@ -120,7 +114,6 @@ export const getData = () => {
         });
     }
 }
-
 
 //Передаим созданный редьюсер mainReducer в расширение combineReducers
 const todoApp = combineReducers ({

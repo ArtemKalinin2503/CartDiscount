@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'; //connect нужен для связи компонента со store
-import {postData, getData, actiontDiscount} from '../reducers/';
+import {postData, getData, fetchResult} from '../reducers/'; //Импортируем thunk компоненты (для сетевого запроса) и action
 import { store } from '../store';
 
 //Компонент Корзина
 class AddProduct extends Component {
 
-
     //При загрузке получим данные 
     componentDidMount() {
-        this.props.fetchGet(); //Вызов thunk getData
+        this.props.fetchGet(); //Вызов thunk getData (для вывода данных с сервера при загрузке страницы)
     }
 
     //Клик по кнопке Добавить
@@ -18,23 +17,26 @@ class AddProduct extends Component {
         let data = {
             product: this.refs.inputProductName.value, //Значение input Продукт
             price: inputValuePriceProduct, //Значение input Цена
-            priceDiscount: inputValuePriceProduct
+            priceDiscount: inputValuePriceProduct //Цена продукта (временное состояние)
         }
-        this.props.fetchPost(data); //Вызов thunk getPost
-        this.props.fetchGet(); //Вызов thunk getData
+        this.props.fetchPost(data); //Вызов thunk getPost (все что предали в объект data запишеться на сервер)
+
     };
 
     //Клик по кнопке Применить скидку
     handleAddDiscount(e) {
         e.preventDefault();
         let inputValuePriceDiscount = parseInt(this.refs.inputDiskount.value); //Преобразуем полученное значение в число 
-
-        {this.props.apiData.map(testArray => {
-            return (
-                store.dispatch(actiontDiscount(testArray.priceDiscount/inputValuePriceDiscount))
-            )
-        })}        
-    };  
+        //Возьмем данные с сервера и с помощью цикла map переберем значения price 
+        var discountedData = this.props.apiData.map(oldValue => {
+            let newValue  = {
+                ...oldValue, //Записываем все значения которые прейдут в oldValue
+                priceDiscount: oldValue.price - (oldValue.price*((inputValuePriceDiscount/100).toFixed(2))) //Рассчет скидки (запишем резудьтат рассчета в состояние priceDiscount)
+            }
+            return newValue;
+        });
+        this.props.updateDiscounted(discountedData); //Вызовим updateDiscounted (в который передали action fetchResult (в функции mapDispatchToProps)) 
+    }
 
     render() {
         return (
@@ -60,12 +62,13 @@ class AddProduct extends Component {
                                 <td>Цена</td>
                                 <td>Цена со скидкой</td>
                             </tr>
+                            {/*Переберем массив данных с сервера и выведим в таблицу*/}
                             {this.props.apiData.map(arrayDataProduct => {
                                 return (
                                     <tr key={arrayDataProduct.id}>
                                         <td>{arrayDataProduct.product}</td>
                                         <td>{arrayDataProduct.price}</td>
-                                        <td>{this.props.discount}</td>
+                                        <td>{arrayDataProduct.priceDiscount}</td>
                                     </tr>
                                 )
                             })}
@@ -95,10 +98,11 @@ const mapStateToProps = (state) => ({
     apiData: state.mainReducer.fetchResult //Для сетевого запроса (сюда приходить ответ от сервера)
 });
 
-//Передаем thunk компонент
+//Передаем thunk компоненты
 const mapDispatchToProps = {
     fetchPost: postData,
-    fetchGet: getData
+    fetchGet: getData,
+    updateDiscounted: fetchResult //Для вызова action fetchResult - который обновит данные 
 }
 
 //Обвернем данный компонент в connect для свзяи с хранилищем

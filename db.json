@@ -1,21 +1,21 @@
 {
   "posts": [
     {
-      "id": 1,
-      "product": "",
-      "price": "",
-      "priceDiscount": ""
+      "product": "Яблоки",
+      "price": 40,
+      "priceDiscount": 40,
+      "id": 1
     },
     {
-      "product": "Apple",
-      "price": 100,
-      "priceDiscount": 100,
+      "product": "Апельсины",
+      "price": 20,
+      "priceDiscount": 20,
       "id": 2
     },
     {
-      "product": "Apple",
-      "price": 100,
-      "priceDiscount": 100,
+      "product": "Мандарины",
+      "price": 80,
+      "priceDiscount": 80,
       "id": 3
     }
   ]
