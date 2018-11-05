@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'; //connect нужен для связи компонента со store
+<<<<<<< HEAD
 import {postData, getData, fetchResult} from '../reducers/'; //Импортируем thunk компоненты (для сетевого запроса) и action
+=======
+import {postData, getData, fetchResult} from '../reducers/';
+>>>>>>> f682f36b555e106a609f4aa1036daccfe2db1a85
 import { store } from '../store';
 
 //Компонент Корзина
@@ -19,7 +23,11 @@ class AddProduct extends Component {
             price: inputValuePriceProduct, //Значение input Цена
             priceDiscount: inputValuePriceProduct //Цена продукта (временное состояние)
         }
+<<<<<<< HEAD
         this.props.fetchPost(data); //Вызов thunk getPost (все что предали в объект data запишеться на сервер)
+=======
+        this.props.fetchPost(data); //Вызов thunk getPost
+>>>>>>> f682f36b555e106a609f4aa1036daccfe2db1a85
 
     };
 
@@ -27,6 +35,7 @@ class AddProduct extends Component {
     handleAddDiscount(e) {
         e.preventDefault();
         let inputValuePriceDiscount = parseInt(this.refs.inputDiskount.value); //Преобразуем полученное значение в число 
+<<<<<<< HEAD
         //Возьмем данные с сервера и с помощью цикла map переберем значения price 
         var discountedData = this.props.apiData.map(oldValue => {
             let newValue  = {
@@ -37,6 +46,19 @@ class AddProduct extends Component {
         });
         this.props.updateDiscounted(discountedData); //Вызовим updateDiscounted (в который передали action fetchResult (в функции mapDispatchToProps)) 
     }
+=======
+
+        var discountedData = this.props.apiData.map(oldValue => {
+            let newValue  = {
+                ...oldValue,
+                priceDiscount: oldValue.price - (oldValue.price*((inputValuePriceDiscount/100).toFixed(2)))
+            }
+            return newValue;
+        });
+        this.props.updateDiscounted(discountedData);
+    }
+
+>>>>>>> f682f36b555e106a609f4aa1036daccfe2db1a85
 
     render() {
         return (
@@ -102,7 +124,11 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     fetchPost: postData,
     fetchGet: getData,
+<<<<<<< HEAD
     updateDiscounted: fetchResult //Для вызова action fetchResult - который обновит данные 
+=======
+    updateDiscounted: fetchResult
+>>>>>>> f682f36b555e106a609f4aa1036daccfe2db1a85
 }
 
 //Обвернем данный компонент в connect для свзяи с хранилищем
