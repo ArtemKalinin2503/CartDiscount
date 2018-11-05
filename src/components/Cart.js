@@ -6,42 +6,13 @@ import { actionProduct, actionPrice, actionPriceDiscount, actiontDiscount} from 
 //Компонент Корзина
 class Cart extends Component {
 
-    //Компонент componentDidMount сработает сразу после загрузки
-    componentDidMount() {
-       
-    }
-
-    handleAddDiscount = event => {
-
-    };
-
     render() {
         return (
-            <div className="cart__wrapper">
-                <p className="cart__title">Корзина</p>
-                <table className="cart_table">
-                    <tbody>
-                        <tr>
-                            <td>Продукт</td>
-                            <td>Цена</td>
-                            <td>Цена со скидкой</td>
-                        </tr>
-                        <tr>
-                            <td className="cart__nameProduct"></td>
-                            <td className="cart__price"></td>
-                            <td className="cart__price__discount"></td>
-                        </tr> 
-                    </tbody>
-                </table>
-                <form className="cart__form">
-                    <label>
-                        Применить скидку
-                        <input type="number" className="cart__form-input"/>
-                        Рублей
-                    </label>
-                    <button className="cart__form-addBtn" onClick={this.handleAddDiscount}>Применить</button>
-                </form>    
-            </div>
+            <tr>
+                <td className="cart__nameProduct"></td>
+                <td className="cart__price"></td>
+                <td className="cart__price__discount"></td>
+            </tr> 
         )
     }
 };
