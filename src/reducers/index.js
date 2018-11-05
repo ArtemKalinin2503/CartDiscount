@@ -20,7 +20,7 @@ export const initState = {
   product: '',
   price: 0,
   priceDiscount: 0,
-  discount: [],
+  discount: [0],
   //Состояние для сетевого запроса
   requestSending:false,
   requestSuccess: null,

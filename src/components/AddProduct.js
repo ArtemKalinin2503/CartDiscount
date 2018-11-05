@@ -18,6 +18,7 @@ class AddProduct extends Component {
         let data = {
             product: this.refs.inputProductName.value, //Значение input Продукт
             price: inputValuePriceProduct, //Значение input Цена
+            priceDiscount: inputValuePriceProduct
         }
         this.props.fetchPost(data); //Вызов thunk getPost
         this.props.fetchGet(); //Вызов thunk getData
@@ -26,17 +27,14 @@ class AddProduct extends Component {
     //Клик по кнопке Применить скидку
     handleAddDiscount(e) {
         e.preventDefault();
-        let inputValuePriceProduct = parseInt(this.refs.inputProductPrice.value); 
         let inputValuePriceDiscount = parseInt(this.refs.inputDiskount.value); //Преобразуем полученное значение в число 
-       
-        let demo = {
-            discount: this.props.price
-        }
 
-        this.props.fetchPost(demo); //Вызов thunk getPost
-        this.props.fetchGet(); //Вызов thunk getData
-
-    };
+        {this.props.apiData.map(testArray => {
+            return (
+                store.dispatch(actiontDiscount(testArray.priceDiscount/inputValuePriceDiscount))
+            )
+        })}        
+    };  
 
     render() {
         return (
@@ -67,7 +65,7 @@ class AddProduct extends Component {
                                     <tr key={arrayDataProduct.id}>
                                         <td>{arrayDataProduct.product}</td>
                                         <td>{arrayDataProduct.price}</td>
-                                        <td>{arrayDataProduct.price}</td>
+                                        <td>{this.props.discount}</td>
                                     </tr>
                                 )
                             })}
