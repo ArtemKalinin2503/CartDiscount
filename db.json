@@ -7,16 +7,28 @@
       "priceDiscount": ""
     },
     {
-      "product": "Apple",
-      "price": 100,
-      "priceDiscount": 100,
+      "product": "apple",
+      "price": 20,
+      "priceDiscount": 20,
       "id": 2
     },
     {
-      "product": "Apple",
-      "price": 100,
-      "priceDiscount": 100,
+      "product": "juice",
+      "price": 23,
+      "priceDiscount": 23,
       "id": 3
+    },
+    {
+      "product": "juice",
+      "price": 23,
+      "priceDiscount": 23,
+      "id": 4
+    },
+    {
+      "product": "sss",
+      "price": 222,
+      "priceDiscount": 222,
+      "id": 5
     }
   ]
 }
