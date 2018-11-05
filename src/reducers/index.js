@@ -95,8 +95,9 @@ export const postData = (post) => {
         dispatch(actionStartPost(true));
         axios.post("http://localhost:3000/posts", post)
         .then(result => {
-            if (result.status === 200) {
+            if (result.status === 201) {
                 dispatch(actionEndPost(true));
+                dispatch(getData());
             } else {
                 dispatch(actionEndPost(false));
             }
